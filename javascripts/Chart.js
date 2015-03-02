@@ -33,9 +33,12 @@ function createMultiBarChartByDate(data, container) {
         .x(function(d,i) { return d[0] })
         .y(function(d) { return d[1] });
     
+    //var legenda = nv.models.legend;
+    //legenda.width = 600;
+    //chart.legend = legenda();
     chart.showLegend(true);
     chart.showControls(false);
-    chart.forceY([]);
+    chart.forceY([0]);
     chart.multibar.stacked(true);
     chart.yAxis
         .showMaxMin(true)

@@ -35,22 +35,23 @@ li {
    h2       - project description
 */
 
+
 header {
-  background: rgba(0, 0, 0, 0.83);
-  width: 100%;
-  border-bottom: 1px dashed #b5e853;
-  padding: 20px 0;
-  margin: 0 0 40px 0;
+    
 }
 
 header h1 {
-  font-size: 30px;
-  line-height: 1.5;
-  margin: 0 0 0 -40px;
-  font-weight: bold;
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  color: #b5e853;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
+    background: rgba(0, 0, 0, 0.83);
+    width: 100%;
+    border-bottom: 1px dashed #b5e853;
+    padding: 20px 0;
+    margin: 0 0 40px 0;
+    font-size: 30px;
+    line-height: 1.5;
+    font-weight: bold;
+    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+    color: #b5e853;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
                0 0 5px rgba(181, 232, 83, 0.1),
                0 0 10px rgba(181, 232, 83, 0.1);
   letter-spacing: -1px;
@@ -65,7 +66,7 @@ header h1:before {
 header h2 {
   font-size: 18px;
   font-weight: 300;
-  color: #666;
+  color: #000000;
 }
 
 #downloads .btn {
@@ -225,13 +226,4 @@ svg {
     
 }
 
-#loadingbar {
-    background: red;
-}
 
-#loadingbar dd, #loadingbar dt {
-    -moz-box-shadow: #000000 1px 0 6px 1px;
-    -ms-box-shadow: #000000 1px 0 6px 1px;
-    -webkit-box-shadow: #000000 1px 0 6px 1px;
-    box-shadow: #000000 1px 0 6px 1px;
-}

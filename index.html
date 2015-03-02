@@ -3,7 +3,6 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap-theme.min.css">
@@ -17,11 +16,12 @@
 <body ng-app="monitora">
 
 <header>
-    <div class="container">
-        <h1>Monitora ES</h1><h2>ver 0.1alfa</h2>
-
+    <div class="topo">
+        <br/>
+    </div>
+    <div class="col-md-12">
+        <h1>Monitoramento ES</h1><h2>ver 0.1alfa</h2>
         <h2>Monitoramento de dados do ES</h2>
-
     </div>
 </header>
 
@@ -39,19 +39,35 @@
         
         
         <p>Enjoy! :D</p>
-        
-        <div id="g1" ng-controller="ChartController">
-            <h3>
-                <a id="consumo-por" class="anchor" href="#consumo-por" aria-hidden="true"><span
-                        class="octicon octicon-link"></span></a>{{title}} que mais consomem.</h3>
 
-            <p>Você pode selecinar quantos órgaos pode observar e o ano</p>
-            <div class="col-md-4">
-                <label>Tipo (Órgão/Fornecedor/Programa)</label>
-                <select ui-select2 ng-model="tipo" ng-change="valChange()" data-placeholder="Selecione o Tipo">
-                    <option ng-repeat="tipo in tipos" value="{{tipo.value}}">{{tipo.text}}</option>
+        <div id="g1" ng-controller="ChartControllerOrgao">
+            <h3>
+                <a id="consumo-por-orgao" class="anchor" href="#consumo-por-orgao" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Órgãos que mais consomem.</h3>
+            <p>Você pode selecionar quantos órgaos pode observar e o ano</p>
+            <div class="col-md-12">
+                <label>Ano</label>
+                <select ui-select2 ng-model="ano" ng-change="valChange()" data-placeholder="Selecione um Ano">
+                    <option ng-repeat="ano in anos" value="{{ano.value}}">{{ano.value}}</option>
                 </select>
             </div>
+
+            <div class="col-md-12">
+                <label>Quantidade (Top {{top}} que mais gastaram)</label>
+                <input ng-model="top" class="col-md-4" ng-change="valChange()" type="range" min="1" max="10">
+            </div>
+
+
+            <hr class="col-md-12">
+            <svg class="orgao" height="600"></svg>
+        </div>
+        <hr class="col-md-12">
+        <div id="g2" ng-controller="ChartControllerFornecedor">
+            <h3>
+                <a id="consumo-por-fornecedor" class="anchor" href="#consumo-por-fornecedor" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Fornecedores que mais consomem.</h3>
+            
+            <p>Você pode selecionar quantos fornecedores pode observar e o ano</p>
             <div class="col-md-4">
                 <label>Ano</label>
                 <select ui-select2 ng-model="ano" ng-change="valChange()" data-placeholder="Selecione um Ano">
@@ -59,14 +75,35 @@
                 </select>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <label>Quantidade (Top {{top}} que mais gastaram)</label>
                 <input ng-model="top" class="col-md-4" ng-change="valChange()" type="range" min="1" max="10">
             </div>
-            
 
-            <hl></hl>
-            <svg height="400"></svg>
+
+            <hr class="col-md-12">
+            <svg class="favorecido" height="600"></svg>
+        </div>
+        <hr class="col-md-12">
+        <div id="g3" ng-controller="ChartControllerAcao">
+            <h3>
+                <a id="consumo-por-acao" class="anchor" href="#consumo-por-acao" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Programas de Governo que mais consomem.</h3>
+
+            <p>Você pode selecionar quantos programas de governo pode observar e o ano</p>
+            <div class="col-md-12">
+                <label>Ano</label>
+                <select ui-select2 ng-model="ano" ng-change="valChange()" data-placeholder="Selecione um Ano">
+                    <option ng-repeat="ano in anos" value="{{ano.value}}">{{ano.value}}</option>
+                </select>
+            </div>
+
+            <div class="col-md-12">
+                <label>Quantidade (Top {{top}} que mais gastaram)</label>
+                <input ng-model="top" class="col-md-4" ng-change="valChange()" type="range" min="1" max="10">
+            </div>
+            <hr class="col-md-12">
+            <svg class="acao" height="600"></svg>
         </div>
 
 
@@ -88,7 +125,7 @@
 <!--biblioteca para realizar gráficos-->
 <script type="text/javascript" src="javascripts/Chart.js"></script>
 <script type="text/javascript" src="javascripts/controllers/ChartController.js"></script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
@@ -98,6 +135,6 @@
         pageTracker._trackPageview();
     } catch (err) {
     }
-</script>
+</script>-->
 </body>
 </html>
