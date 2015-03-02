@@ -211,3 +211,16 @@ a {
 .cf {
   zoom:1;
 }
+
+
+
+svg {
+    
+    padding-left: 25px;
+}
+
+
+.nv-legend-text {
+    font-size: 10px;
+    
+} 
