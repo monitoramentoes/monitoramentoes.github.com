@@ -39,20 +39,32 @@
         
         <p>Enjoy! :D</p>
         
-        <h3>
-            <a id="consumo-por-orgao" class="anchor" href="#consumo-por-orgao" aria-hidden="true"><span
-                    class="octicon octicon-link"></span></a>Órgãos que mais consomem.</h3>
-
-        <p>Você pode selecinar quantos órgaos pode observar e o ano</p>
-
-        
-        
-        
         <div id="g1" ng-controller="ChartController">
-            <select ui-select2 ng-model="ano" ng-change="valChange()" class="col-md-4" data-placeholder="Selecione um Ano">
-                <option ng-repeat="ano in anos" value="{{ano.value}}">{{ano.value}}</option>
-            </select>
-            <input ng-model="top" class="col-md-4" ng-change="valChange()" type="text" placeholder="digite a quantidade">
+            <h3>
+                <a id="consumo-por" class="anchor" href="#consumo-por" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>{{title}} que mais consomem.</h3>
+
+            <p>Você pode selecinar quantos órgaos pode observar e o ano</p>
+            <div class="col-md-4">
+                <label>Tipo (Órgão/Fornecedor/Programa)</label>
+                <select ui-select2 ng-model="tipo" ng-change="valChange()" data-placeholder="Selecione o Tipo">
+                    <option ng-repeat="tipo in tipos" value="{{tipo.value}}">{{tipo.text}}</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Ano</label>
+                <select ui-select2 ng-model="ano" ng-change="valChange()" data-placeholder="Selecione um Ano">
+                    <option ng-repeat="ano in anos" value="{{ano.value}}">{{ano.value}}</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label>Quantidade (Top {{top}} que mais gastaram)</label>
+                <input ng-model="top" class="col-md-4" ng-change="valChange()" type="range" min="1" max="10">
+            </div>
+            
+
+            <hl></hl>
             <svg height="400"></svg>
         </div>
 
@@ -71,6 +83,7 @@
 <script type="text/javascript" src="lib/angular-ui-select2/src/select2.js"></script>
 <!--last one script aways-->
 <script type="text/javascript" src="javascripts/main.js"></script>
+<!--biblioteca para realizar gráficos-->
 <script type="text/javascript" src="javascripts/Chart.js"></script>
 <script type="text/javascript" src="javascripts/controllers/ChartController.js"></script>
 <script type="text/javascript">
@@ -84,12 +97,5 @@
     } catch (err) {
     }
 </script>
-<script>
-    $( document ).ready(function() {
-      //  createMultiBarChartByDate(angular.element($("#test")).scope().dados, '#test svg');
-    });
-</script>
-
-
 </body>
 </html>

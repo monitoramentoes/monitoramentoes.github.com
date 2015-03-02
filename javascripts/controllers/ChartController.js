@@ -1,14 +1,22 @@
 angular.module('monitora').controller('ChartController',function($scope , $http, $resource , $element , _ ){
-
-
+    
+    
+    
+    
     $scope.anos = [ {value : 2012}, {value : 2013}, {value : 2014}];
+    $scope.tipo = 'orgao'
+    $scope.tipos = [ {text: 'Órgãos', value : 'orgao'}, {text: 'Favorecidos', value : 'favorecido'}, {text: 'Programas', value : 'acao'}];
     $scope.ano = 2014;
     $scope.top = 3;
+    
+    
+    $scope.title = _.where($scope.tipos,{ value : $scope.tipo})[0].text;
+    
 
 
     $scope.valChange = function (){
         if (($scope.ano)&&($scope.top)){
-            callGraph('orgao',$scope.ano,$scope.top);
+            callGraph($scope.tipo,$scope.ano,$scope.top);
         }
     };
 
@@ -21,22 +29,41 @@ angular.module('monitora').controller('ChartController',function($scope , $http,
 
 
         function processaDados(dados) {
-
-            dados_puros = dados
-
-            var dados  = _.map(dados.orgaos ,function(el)
+            var  dados_analise = (function(){
+                if($scope.tipo == 'orgao') {
+                    return  dados.orgaos
+                } else if ($scope.tipo == 'favorecido') {
+                    return  dados.favorecidos
+                } else {
+                    return  dados.acoes
+                }
+            })();
+            
+            
+            var dados  = _.map( dados_analise ,function(el)
             {
-                var  dados_orgao = {'key': el.orgao, 'values': _.map(el.periodos,
+
+                var  key = (function(){
+                    if($scope.tipo == 'orgao') {
+                        return  el.orgao
+                    } else if ($scope.tipo == 'favorecido') {
+                        return  el.favorecido
+                    } else {
+                        return  el.acao
+                    }
+                })();
+                
+                var  dados_nivel1 = {'key': key, 'values': _.map(el.periodos,
                 function(periodos){
                     return [
                         new Date(periodos.datdocumento.split(" ")[1], periodos.datdocumento.split(" ")[0] - 1, 1)
                         , periodos.valor_pago]
 
-                })}
+                })};
 
 
                 if (el.periodos.length < 12){
-                    var ano = $scope.ano
+                    var ano = $scope.ano;
                     var periodos = _.map(el.periodos, function (num) {
                         return parseInt(num.datdocumento.split(" ")[0])
                     });
@@ -46,17 +73,17 @@ angular.module('monitora').controller('ChartController',function($scope , $http,
                         function (mes_restante){ return [new Date(ano, mes_restante -1, 1),0];}));
                     
                     _.each(meses_restantes,function(val) {
-                        dados_orgao.values.push(val);
-                    })
-                    
-                    dados_orgao.values = _.sortBy(dados_orgao.values, function(d){ return  (new Date(d[0]).getMonth()) })
+                        dados_nivel1.values.push(val);
+                    });
+
+                    dados_nivel1.values = _.sortBy(dados_nivel1.values, function(d){ return new Date(d[0]).getMonth() })
 
 
             }
 
 
 
-                return dados_orgao
+                return dados_nivel1
             });
 
 
