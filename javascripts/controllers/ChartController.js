@@ -57,8 +57,8 @@ function callGraph(ngProgress,$resource,$element,$scope,_){
     ngProgress.start();
 
 
-    //var Orgao = $resource('http://opendataday.herokuapp.com/api/despesas/:tipo?ano=:ano&top=:top');
-    var Orgao = $resource('http://localhost:3000/api/despesas/:tipo?ano=:ano&top=:top');
+    var Orgao = $resource('http://opendataday.herokuapp.com/api/despesas/:tipo?ano=:ano&top=:top');
+    //var Orgao = $resource('http://localhost:3000/api/despesas/:tipo?ano=:ano&top=:top');
     Orgao.query({tipo : tipo, ano : ano , top : top}, function(data){ 
         $scope.dados = data[0];
         processaDados($scope.dados);
