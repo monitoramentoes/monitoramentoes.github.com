@@ -22,8 +22,8 @@ angular.module('monitora').controller('ChartController',function($scope , $http,
 
 
     function callGraph(tipo,ano,top){
-        //var Orgao = $resource('http://opendataday.herokuapp.com/api/despesas/:tipo?ano=:ano&top=:top');
-        var Orgao = $resource('http://localhost:3000/api/despesas/:tipo?ano=:ano&top=:top');
+        var Orgao = $resource('http://opendataday.herokuapp.com/api/despesas/:tipo?ano=:ano&top=:top');
+        //var Orgao = $resource('http://localhost:3000/api/despesas/:tipo?ano=:ano&top=:top');
         Orgao.query({tipo : tipo, ano : ano , top : top}, function(data){ processaDados(data[0]) } , function (erro) {});
 
 
