@@ -223,4 +223,15 @@ svg {
 .nv-legend-text {
     font-size: 10px;
     
-} 
+}
+
+#loadingbar {
+    background: red;
+}
+
+#loadingbar dd, #loadingbar dt {
+    -moz-box-shadow: #000000 1px 0 6px 1px;
+    -ms-box-shadow: #000000 1px 0 6px 1px;
+    -webkit-box-shadow: #000000 1px 0 6px 1px;
+    box-shadow: #000000 1px 0 6px 1px;
+}

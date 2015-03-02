@@ -1,0 +1,32 @@
+{
+  "name": "monitoramentoes",
+  "version": "0.0.1",
+  "homepage": "monitoramentoes.github.com",
+  "authors": [
+    "clayton@xdevel.com.br <clayton@xdevel.com.br>"
+  ],
+  "description": "Monitoramento de dados do ES",
+  "main": "index.html",
+  "license": "GPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.14",
+    "bootstrap": "~3.3.2",
+    "angular-route": "~1.3.14",
+    "angularjs-nvd3-directives": "~0.0.7",
+    "d3": "~3.5.5",
+    "angular-resource": "~1.3.14",
+    "underscore": "~1.8.2",
+    "ngprogress": "~1.0.7"
+  },
+  "resolutions": {
+    "d3": "~3.5.5",
+    "angular": "1.3.14"
+  }
+}
